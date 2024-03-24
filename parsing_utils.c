@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:42:22 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/24 16:53:07 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/24 20:06:46 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,13 @@ void	validate_char(t_parsemap *prsng, char c)
 
 /// @brief sets certain values to the struct
 /// @param prsng the struct that has all my utils for parsing
-void	initializer(t_parsemap **prsng)
+void	initializer(t_parsemap *prsng)
 {
-	(*prsng)->check = -1;
-	(*prsng)->emptyline = -1;
-	(*prsng)->coins = 0;
-	(*prsng)->player = 0;
-	(*prsng)->exit = 0;
-	(*prsng)->x = 0;
-	(*prsng)->y = 0;
+	prsng->check = -1;
+	prsng->emptyline = -1;
+	prsng->coins = 0;
+	prsng->player = 0;
+	prsng->exit = 0;
+	prsng->x = 0;
+	prsng->y = 0;
 }

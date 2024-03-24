@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   valid_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 16:33:10 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/24 16:50:34 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/24 20:03:29 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	validate_path(char **copy, int x, int y, t_parsemap **prsng)
+void	validate_path(char **copy, int x, int y, t_parsemap *prsng)
 {
-	if (x < 0 || x > (*prsng)->rows || y < 0
-		|| y > (*prsng)->cols || copy[y][x] == WALL)
+	if (x < 0 || x > prsng->rows || y < 0
+		|| y > prsng->cols || copy[y][x] == WALL)
 		return ;
 	if (copy[y][x] == COIN)
-		(*prsng)->coins--;
+		prsng->coins--;
 	if (copy[y][x] == EXIT)
-		(*prsng)->exit--;
+		prsng->exit--;
 	copy[y][x] = WALL;
 	validate_path(copy, x + 1, y, prsng);
 	validate_path(copy, x - 1, y, prsng);
