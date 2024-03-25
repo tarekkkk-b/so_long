@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:42:22 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/24 20:06:46 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:04:16 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,21 @@ void	freeing(char **map, char **copy)
 	i = 0;
 	if (map)
 	{
-		while (map[i++])
+		while (map[i])
+		{
 			free(map[i]);
+			i++;
+		}
 		free(map);	
 	}
 	if (copy)
 	{
 		i = 0;
-		while (copy[i++])
+		while (copy[i])
+		{
 			free(copy[i]);
+			i++;
+		}
 		free(copy);	
 	}
 }
@@ -80,24 +86,23 @@ int	check_occurance(char *row, char c)
 /// @brief validates the character
 /// @param prsng the struct that has all my utils for parsing
 /// @param c the character
-void	validate_char(t_parsemap *prsng, char c)
+void	validate_char(t_parsemap **prsng, char c)
 {
 	if (c != WALL && c != FLOOR && c != COIN && c != PLAYER && c != EXIT)
 	{
 		write (2, "Invalid token found.\n", 21);
-		return (freeing(prsng->map, prsng->copy), exit(EXIT_FAILURE));
+		return (freeing((*prsng)->map, (*prsng)->copy), exit(EXIT_FAILURE));
 	}
 }
 
 /// @brief sets certain values to the struct
 /// @param prsng the struct that has all my utils for parsing
-void	initializer(t_parsemap *prsng)
+void	initializer(t_parsemap **prsng)
 {
-	prsng->check = -1;
-	prsng->emptyline = -1;
-	prsng->coins = 0;
-	prsng->player = 0;
-	prsng->exit = 0;
-	prsng->x = 0;
-	prsng->y = 0;
+	(*prsng)->emptyline = -1;
+	(*prsng)->coins = 0;
+	(*prsng)->player = 0;
+	(*prsng)->exit = 0;
+	(*prsng)->x = 0;
+	(*prsng)->y = 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:05:54 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/24 20:06:58 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:54:02 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@
 /// @return the map to the main
 void	parse_map(char *path, t_parsemap *prsng)
 {
-	initializer(prsng);
+	initializer(&prsng);
 	validate_file(path);
-	get_map(path, prsng);
-	validate_size(prsng);
-	mapclosed(prsng);
-	validate_elements(prsng);
+	get_map(path, &prsng);
+	validate_size(&prsng);
+	mapclosed(&prsng);
+	validate_elements(&prsng);
 	if (prsng->player != 1 || prsng->exit != 1 || prsng->coins < 1)
 	{
 		write(2, "Wrong tokens count.\n", 20);
 		return (freeing(prsng->map, prsng->copy), exit(EXIT_FAILURE));
 	}
-	validate_path(prsng->copy, prsng->x, prsng->y, prsng);
-	if (prsng->player != 0 || prsng->exit != 0 || prsng->coins != 0)
+	validate_path(prsng->copy, prsng->x, prsng->y, &prsng);
+	if (prsng->exit != 0 || prsng->coins != 0)
 	{
 		write(2, "No valid path found.\n", 21);
 		return (freeing(prsng->map, prsng->copy), exit(EXIT_FAILURE));
@@ -39,14 +39,14 @@ void	parse_map(char *path, t_parsemap *prsng)
 
 int	main(int ac, char **av)
 {
-	t_parsemap	*prsng;
+	t_parsemap	prsng;
 
-	prsng = NULL;
 	if (ac != 2)
 	{
 		write(2, "Usage: ./so_long [map].ber\n", 28);
 		exit (EXIT_FAILURE);
 	}
-	parse_map(av[1], prsng);
+	parse_map(av[1], &prsng);
+	freeing(prsng.map, NULL);
 	return (0);
 }

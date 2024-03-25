@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:51:34 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/24 20:04:33 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:07:43 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 typedef struct s_parsemap
 {
 	int		fd;
-	int		check;
 	int		rows;
 	int		cols;
 	int		emptyline;
@@ -58,16 +57,16 @@ typedef struct s_parsemap
 /*************************************************************/
 
 void	parse_map(char *path, t_parsemap *prsng);
-void	linecount(char *path, t_parsemap *prsng);
-void	validate_size(t_parsemap *prsng);
-void	mapclosed(t_parsemap *prsng);
-void	get_map(char *path, t_parsemap *prsng);
-void	validate_elements(t_parsemap *prsng);
+void	linecount(char *path, t_parsemap **prsng);
+void	validate_size(t_parsemap **prsng);
+void	mapclosed(t_parsemap **prsng);
+void	get_map(char *path, t_parsemap **prsng);
+void	validate_elements(t_parsemap **prsng);
 void	freeing(char **map, char **copy);
 void	validate_file(char *path);
 int		check_occurance(char *row, char c);
-void	validate_char(t_parsemap *prsng, char c);
-void	initializer(t_parsemap *prsng);
-void	validate_path(char **copy, int x, int y, t_parsemap *prsng);
+void	validate_char(t_parsemap **prsng, char c);
+void	initializer(t_parsemap **prsng);
+void	validate_path(char **copy, int x, int y, t_parsemap **prsng);
 
 #endif
