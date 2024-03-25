@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:51:34 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/25 13:07:43 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/25 21:10:24 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG
-# define SO_LONG
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 /***************************************************************/
 /*							libraries						  */

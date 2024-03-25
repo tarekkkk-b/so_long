@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:42:22 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/25 15:04:16 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/25 21:10:02 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,19 @@ void	freeing(char **map, char **copy)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	if (map)
 	{
-		while (map[i])
-		{
+		while (map[i++])
 			free(map[i]);
-			i++;
-		}
-		free(map);	
+		free(map);
 	}
 	if (copy)
 	{
-		i = 0;
-		while (copy[i])
-		{
+		i = -1;
+		while (copy[i++])
 			free(copy[i]);
-			i++;
-		}
-		free(copy);	
+		free(copy);
 	}
 }
 
@@ -48,18 +42,12 @@ void	validate_file(char *path)
 	int	fd;
 
 	if (!path)
-	{
-		write(2, "Usage: ./so_long [map].ber\n", 27);
-		exit (EXIT_FAILURE);
-	}
+		(write(2, "Usage: ./so_long [map].ber\n", 27), exit (EXIT_FAILURE));
 	if (ft_strncmp(&path[ft_strlen(path) - 4], ".ber", 4) != 0)
-	{
-		write(2, "Usage: ./so_long [map].ber\n", 27);
-		exit (EXIT_FAILURE);
-	}
+		(write(2, "Usage: ./so_long [map].ber\n", 27), exit (EXIT_FAILURE));
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		(write (2, "Couldn't open file.\n", 20), exit (EXIT_FAILURE));
+		(write (2, "Couldn't find file.\n", 20), exit (EXIT_FAILURE));
 	close (fd);
 }
 
@@ -71,14 +59,14 @@ int	check_occurance(char *row, char c)
 {
 	int	i;
 	int	len;
-	
+
 	i = 0;
 	len = ft_strlen(row);
 	while (i < len)
 	{
 		if (row[i] != c)
 			return (0);
-		i++;	
+		i++;
 	}
 	return (1);
 }
@@ -91,7 +79,7 @@ void	validate_char(t_parsemap **prsng, char c)
 	if (c != WALL && c != FLOOR && c != COIN && c != PLAYER && c != EXIT)
 	{
 		write (2, "Invalid token found.\n", 21);
-		return (freeing((*prsng)->map, (*prsng)->copy), exit(EXIT_FAILURE));
+		(freeing((*prsng)->map, (*prsng)->copy), exit(EXIT_FAILURE));
 	}
 }
 

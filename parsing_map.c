@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:07:27 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/25 16:59:02 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/25 21:08:09 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	linecount(char *path, t_parsemap **prsng)
 	i = 0;
 	fd = open(path, O_RDONLY);
 	(*prsng)->line = get_next_line(fd);
-	if (!(*prsng)->line)	
-		return ((void)write(2, "Empty map.\n", 11), (void)close(fd), exit(1));
+	if (!(*prsng)->line)
+		(write(2, "Empty map.\n", 11), (void)close(fd), exit(EXIT_FAILURE));
 	while ((*prsng)->line)
 	{
 		i++;
@@ -33,7 +33,7 @@ void	linecount(char *path, t_parsemap **prsng)
 		if ((*prsng)->line[0] != '\n' && (*prsng)->emptyline == 1)
 		{
 			write(2, "Empty line found in the map.\n", 29);
-			return (free((*prsng)->line), (void)close(fd), exit(EXIT_FAILURE));
+			(free((*prsng)->line), (void)close(fd), exit(EXIT_FAILURE));
 		}
 		else if ((*prsng)->line[0] != '\n')
 			(*prsng)->rows = i;
@@ -56,12 +56,12 @@ void	validate_size(t_parsemap **prsng)
 		|| (*prsng)->cols * (*prsng)->rows < 15)
 	{
 		write(2, "Map is too small.\n", 18);
-		return (freeing((*prsng)->map, (*prsng)->copy), exit(EXIT_FAILURE));
+		(freeing((*prsng)->map, (*prsng)->copy), exit(EXIT_FAILURE));
 	}
 	if ((*prsng)->cols > 24 || (*prsng)->rows > 42)
 	{
 		write(2, "Map is too big.\n", 16);
-		return (freeing((*prsng)->map, (*prsng)->copy), exit(EXIT_FAILURE));
+		(freeing((*prsng)->map, (*prsng)->copy), exit(EXIT_FAILURE));
 	}
 	i = 1;
 	while ((*prsng)->map[i])
@@ -70,7 +70,7 @@ void	validate_size(t_parsemap **prsng)
 		if (temp != (*prsng)->cols)
 		{
 			write(2, "Map is irregular.\n", 18);
-			return (freeing((*prsng)->map, (*prsng)->copy), exit(EXIT_FAILURE));
+			(freeing((*prsng)->map, (*prsng)->copy), exit(EXIT_FAILURE));
 		}
 	}
 }
@@ -86,14 +86,15 @@ void	mapclosed(t_parsemap **prsng)
 		|| check_occurance((*prsng)->map[(*prsng)->rows - 1], WALL) == -1)
 	{
 		write(2, "Map is not closed.\n", 19);
-		return (freeing((*prsng)->map, (*prsng)->copy), exit(EXIT_FAILURE));
+		(freeing((*prsng)->map, (*prsng)->copy), exit(EXIT_FAILURE));
 	}
 	while (i < (*prsng)->rows)
 	{
-		if ((*prsng)->map[i][0] != WALL || (*prsng)->map[i][(*prsng)->cols - 1] != WALL)
+		if ((*prsng)->map[i][0] != WALL
+			|| (*prsng)->map[i][(*prsng)->cols - 1] != WALL)
 		{
 			write(2, "Map is not closed.\n", 19);
-			return (freeing((*prsng)->map, (*prsng)->copy), exit(EXIT_FAILURE));
+			(freeing((*prsng)->map, (*prsng)->copy), exit(EXIT_FAILURE));
 		}
 		i++;
 	}

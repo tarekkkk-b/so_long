@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:05:54 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/25 16:54:02 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/25 21:06:27 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	parse_map(char *path, t_parsemap *prsng)
 	if (prsng->player != 1 || prsng->exit != 1 || prsng->coins < 1)
 	{
 		write(2, "Wrong tokens count.\n", 20);
-		return (freeing(prsng->map, prsng->copy), exit(EXIT_FAILURE));
+		(freeing(prsng->map, prsng->copy), exit(EXIT_FAILURE));
 	}
 	validate_path(prsng->copy, prsng->x, prsng->y, &prsng);
 	if (prsng->exit != 0 || prsng->coins != 0)
 	{
 		write(2, "No valid path found.\n", 21);
-		return (freeing(prsng->map, prsng->copy), exit(EXIT_FAILURE));
+		(freeing(prsng->map, prsng->copy), exit(EXIT_FAILURE));
 	}
 	freeing(NULL, prsng->copy);
 }
@@ -42,10 +42,7 @@ int	main(int ac, char **av)
 	t_parsemap	prsng;
 
 	if (ac != 2)
-	{
-		write(2, "Usage: ./so_long [map].ber\n", 28);
-		exit (EXIT_FAILURE);
-	}
+		(write(2, "Usage: ./so_long [map].ber\n", 28), exit (EXIT_FAILURE));
 	parse_map(av[1], &prsng);
 	freeing(prsng.map, NULL);
 	return (0);
