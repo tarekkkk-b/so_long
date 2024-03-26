@@ -6,7 +6,7 @@
 /*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:51:34 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/25 21:10:24 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/27 00:21:58 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ typedef struct s_parsemap
 	char	**map;
 	char	**copy;
 	int		coins;
+	int		tempc;
 	int		player;
 	int		exit;
+	int		tempe;
 	int		x;
 	int		y;
 }	t_parsemap;

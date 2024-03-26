@@ -6,7 +6,7 @@
 /*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:05:54 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/25 21:06:27 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/27 00:26:40 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	parse_map(char *path, t_parsemap *prsng)
 		(freeing(prsng->map, prsng->copy), exit(EXIT_FAILURE));
 	}
 	validate_path(prsng->copy, prsng->x, prsng->y, &prsng);
-	if (prsng->exit != 0 || prsng->coins != 0)
+	if (prsng->tempe != 0 || prsng->tempe != 0)
 	{
 		write(2, "No valid path found.\n", 21);
 		(freeing(prsng->map, prsng->copy), exit(EXIT_FAILURE));

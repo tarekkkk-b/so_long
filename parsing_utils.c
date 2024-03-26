@@ -6,7 +6,7 @@
 /*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:42:22 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/25 21:10:02 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/27 00:22:39 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void	validate_char(t_parsemap **prsng, char c)
 /// @param prsng the struct that has all my utils for parsing
 void	initializer(t_parsemap **prsng)
 {
+	(*prsng)->tempc = -1;
+	(*prsng)->tempe = -1;
 	(*prsng)->emptyline = -1;
 	(*prsng)->coins = 0;
 	(*prsng)->player = 0;
