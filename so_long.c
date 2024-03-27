@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:05:54 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/27 16:35:59 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:42:20 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,19 @@ static void	rendermap(t_game *game)
 	renderelements(game);
 }
 
+static int	handle_keys(int keycode, t_game *game)
+{
+	if (keycode == UP)
+		write(1, "UP\n", 3);
+	if (keycode == DOWN)
+		write(1, "DOWN\n", 5);
+	if (keycode == LEFT)
+		write(1, "LEFT\n", 5);
+	if (keycode == RIGHT)
+		write(1, "RIGHT\n", 6);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_game	game;
@@ -133,6 +146,7 @@ int	main(int ac, char **av)
 	game.window = mlx_new_window(game.mlx, game.map->cols * TILE,
 			game.map->rows * TILE, "so_long");
 	rendermap(&game);
+	mlx_hook(game.window, 2, 0, handle_keys, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

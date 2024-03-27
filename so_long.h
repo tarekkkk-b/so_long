@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:51:34 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/27 16:33:43 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:40:34 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,14 @@ typedef struct s_game
 	int			tile;
 	t_parsemap	*map;
 }	t_game;
+
+typedef enum keys
+{
+	UP = 126,
+	DOWN = 125, 
+	RIGHT = 124,
+	LEFT = 123,
+}	t_keys;
 
 /***************************************************************/
 /*							functions						  */
