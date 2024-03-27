@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:51:34 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/27 00:21:58 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:51:46 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define COIN				'C'
 # define PLAYER				'P'
 # define EXIT				'E'
+# define F					EXIT_FAILURE
+# define TILE				120
 
 /***************************************************************/
 /*							structs							  */
@@ -54,18 +56,27 @@ typedef struct s_parsemap
 	int		y;
 }	t_parsemap;
 
+typedef struct s_game
+{
+	void		*mlx;
+	void		*window;
+	void		*tiles[3];
+	int			tile;
+	t_parsemap	*map;
+}	t_game;
+
 /***************************************************************/
 /*							functions						  */
 /*************************************************************/
 
-void	parse_map(char *path, t_parsemap *prsng);
+void	parse_map(char *path, t_game *map);
 void	linecount(char *path, t_parsemap **prsng);
 void	validate_size(t_parsemap **prsng);
 void	mapclosed(t_parsemap **prsng);
 void	get_map(char *path, t_parsemap **prsng);
 void	validate_elements(t_parsemap **prsng);
-void	freeing(char **map, char **copy);
-void	validate_file(char *path);
+void	freeing(char **map, char **copy, t_parsemap *prsng);
+void	validate_file(char *path, t_parsemap **prsng);
 int		check_occurance(char *row, char c);
 void	validate_char(t_parsemap **prsng, char c);
 void	initializer(t_parsemap **prsng);

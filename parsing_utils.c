@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:42:22 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/27 00:22:39 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/27 13:57:48 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,41 @@
 /// @brief frees a 2D array
 /// @param map takes a 2D array, usually will be the map
 /// @param copy takes a 2D array, usually will be the copy
-void	freeing(char **map, char **copy)
+void	freeing(char **map, char **copy, t_parsemap *prsng)
 {
 	int	i;
 
 	i = -1;
 	if (map)
 	{
-		while (map[i++])
+		while (map[++i])
 			free(map[i]);
 		free(map);
 	}
 	if (copy)
 	{
 		i = -1;
-		while (copy[i++])
+		while (copy[++i])
 			free(copy[i]);
 		free(copy);
 	}
+	if (prsng)
+		free (prsng);
 }
 
 /// @brief checks if the file name is valid and file is openable
 /// @param path the name of the map file
-void	validate_file(char *path)
+void	validate_file(char *path, t_parsemap **prsng)
 {
 	int	fd;
 
 	if (!path)
-		(write(2, "Usage: ./so_long [map].ber\n", 27), exit (EXIT_FAILURE));
+		(write(2, "Usage: ./so_long [map].ber\n", 27), free(*prsng), exit(F));
 	if (ft_strncmp(&path[ft_strlen(path) - 4], ".ber", 4) != 0)
-		(write(2, "Usage: ./so_long [map].ber\n", 27), exit (EXIT_FAILURE));
+		(write(2, "Usage: ./so_long [map].ber\n", 27), free(*prsng), exit(F));
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		(write (2, "Couldn't find file.\n", 20), exit (EXIT_FAILURE));
+		(write (2, "Couldn't find file.\n", 20), free(*prsng), exit(F));
 	close (fd);
 }
 
@@ -79,7 +81,7 @@ void	validate_char(t_parsemap **prsng, char c)
 	if (c != WALL && c != FLOOR && c != COIN && c != PLAYER && c != EXIT)
 	{
 		write (2, "Invalid token found.\n", 21);
-		(freeing((*prsng)->map, (*prsng)->copy), exit(EXIT_FAILURE));
+		(freeing((*prsng)->map, (*prsng)->copy,(*prsng)), exit(F));
 	}
 }
 
