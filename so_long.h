@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:51:34 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/27 16:40:34 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/27 21:57:17 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define PLAYER				'P'
 # define EXIT				'E'
 # define F					EXIT_FAILURE
+# define S					EXIT_SUCCESS
 # define TILE				120
 
 /***************************************************************/
@@ -53,7 +54,9 @@ typedef struct s_parsemap
 	int		exit;
 	int		tempe;
 	int		x;
+	int		exitx;
 	int		y;
+	int		exity;
 }	t_parsemap;
 
 typedef struct s_game

@@ -6,7 +6,7 @@
 /*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:05:54 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/27 21:13:05 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/27 23:04:00 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,16 +121,33 @@ static void	rendermap(t_game *game)
 	renderelements(game);
 }
 
+static void	move(int newx, int newy, t_game *game)
+{
+	if (game->map->map[newy][newx] == WALL)
+		return ;
+	mlx_put_image_to_window(game->mlx, game->window, game->tiles[2],
+			game->map->x * TILE, game->map->y * TILE);
+	game->map->map[game->map->y][game->map->x] = FLOOR;
+	game->map->x = newx;
+	game->map->y = newy;
+	game->map->map[newy][newx] = PLAYER;
+	mlx_put_image_to_window(game->mlx, game->window,
+					game->tiles[2],	game->map->x * TILE, game->map->y * TILE);
+	mlx_put_image_to_window(game->mlx, game->window,
+					game->sonic[0],	game->map->x * TILE, game->map->y * TILE);
+	usleep(100000);
+}
+
 static int	handle_keys(int keycode, t_game *game)
 {
 	if (keycode == UP)
-		write(1, "UP\n", 3);
+		move(game->map->x, game->map->y - 1, game);
 	if (keycode == DOWN)
-		write(1, "DOWN\n", 5);
+		move(game->map->x, game->map->y + 1, game);
 	if (keycode == LEFT)
-		write(1, "LEFT\n", 5);
+		move(game->map->x - 1, game->map->y, game);
 	if (keycode == RIGHT)
-		write(1, "RIGHT\n", 6);
+		move(game->map->x + 1, game->map->y, game);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 16:33:10 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/27 00:26:09 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/27 21:57:57 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ void	validate_path(char **copy, int x, int y, t_parsemap **prsng)
 	if (copy[y][x] == COIN)
 		(*prsng)->tempc--;
 	if (copy[y][x] == EXIT)
+	{
 		(*prsng)->tempe--;
+		(*prsng)->exitx = x;
+		(*prsng)->exity = y;
+	}
 	copy[y][x] = '1';
 	validate_path(copy, x + 1, y, prsng);
 	validate_path(copy, x - 1, y, prsng);
