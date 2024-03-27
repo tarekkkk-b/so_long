@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:07:27 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/27 13:52:41 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/27 21:01:40 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	validate_elements(t_parsemap **prsng)
 	j = 0;
 	while (i < (*prsng)->rows)
 	{
-		while (j < (*prsng)->cols - 1)
+		while (j < (*prsng)->cols)
 		{
 			validate_char(prsng, (*prsng)->map[i][j]);
 			if ((*prsng)->map[i][j] == COIN)
