@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:05:54 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/27 16:21:40 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:35:59 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ static void	initialize_tiles(t_game *game)
 			"./textures/xpm/wall.xpm", &game->tile, &game->tile);
 	game->tiles[2] = mlx_xpm_file_to_image(game->mlx,
 			"./textures/xpm/floor.xpm", &game->tile, &game->tile);
+	game->coins[0] = mlx_xpm_file_to_image(game->mlx,
+			"./textures/xpm/ring.xpm", &game->tile, &game->tile);
+	game->sonic[0] = mlx_xpm_file_to_image(game->mlx,
+			"./textures/xpm/sonic_left.xpm", &game->tile, &game->tile);
 }
 
 static void	renderborders(t_game *game)
@@ -63,6 +67,30 @@ static void	renderborders(t_game *game)
 				|| (j == 0 || j == game->map->cols -1))
 					mlx_put_image_to_window(game->mlx, game->window,
 					game->tiles[0],	j * TILE, i * TILE);	
+		}
+		j = -1;
+	}
+}
+static void	renderelements(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	j = -1;
+	while (game->map->map[++i])
+	{
+		while (game->map->map[i][++j])
+		{
+			if (game->map->map[i][j] == COIN)
+				mlx_put_image_to_window(game->mlx, game->window,
+					game->coins[0],	j * TILE, i * TILE);	
+			if (game->map->map[i][j] == PLAYER)
+				mlx_put_image_to_window(game->mlx, game->window,
+					game->sonic[0],	j * TILE, i * TILE);	
+			if (game->map->map[i][j] == EXIT)
+				mlx_put_image_to_window(game->mlx, game->window,
+					game->coins[0],	j * TILE, i * TILE);	
 		}
 		j = -1;
 	}
@@ -90,6 +118,7 @@ static void	rendermap(t_game *game)
 		}
 		j = 0;
 	}
+	renderelements(game);
 }
 
 int	main(int ac, char **av)

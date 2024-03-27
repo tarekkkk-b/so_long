@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:51:34 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/27 14:51:46 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:33:43 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_game
 	void		*mlx;
 	void		*window;
 	void		*tiles[3];
+	void		*coins[1];
+	void		*sonic[1];
 	int			tile;
 	t_parsemap	*map;
 }	t_game;
