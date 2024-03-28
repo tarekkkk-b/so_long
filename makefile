@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+         #
+#    By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 15:04:55 by tabadawi          #+#    #+#              #
-#    Updated: 2024/03/27 21:08:16 by tarekkkk         ###   ########.fr        #
+#    Updated: 2024/03/28 16:02:23 by tabadawi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	=	so_long
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g3
 
 SRCS 	=	so_long.c \
 			parsing_map.c parsing_utils.c \
@@ -24,19 +24,25 @@ OBJS	=	$(SRCS:.c=.o)
 
 LIBFT	=	libft/libft.a
 
+PRINTF	=	ft_printf/libftprintf.a	
+
 MLX		=	mlx/libmlx.a
 
 MLXFLAG	=	-L mlx -lmlx -framework OpenGL -framework AppKit
 
 all		:	$(NAME)
 
-$(NAME)	:	$(OBJS) $(LIBFT) $(MLX)
-	@$(CC)	$(CFLAGS) $(OBJS) $(MLXFLAG) -o $@ $(LIBFT) $(MLX)
+$(NAME)	:	$(OBJS) $(LIBFT) $(MLX) $(PRINTF)
+	@$(CC)	$(CFLAGS) $(OBJS) $(MLXFLAG) -o $@ $(LIBFT) $(MLX) $(PRINTF)
 	@ echo "SO_LONG CREATED"
 
 $(LIBFT):
 	@$(MAKE)	-C libft
 	@ echo "LIBFT CREATED"
+
+$(PRINTF):
+	@$(MAKE)	-C ft_printf
+	@ echo "PRINTF CREATED"
 
 $(MLX):
 	@$(MAKE)	-C mlx
@@ -44,11 +50,13 @@ $(MLX):
 
 clean :
 	@$(MAKE) -C libft clean
-	@$(MAKE) -C mlx clean
+	@$(MAKE) -C ft_printf clean
 	@rm -f $(OBJS)
 		
 fclean: clean
 	@$(MAKE) -C libft fclean
+	@$(MAKE) -C ft_printf fclean
+	@$(MAKE) -C mlx clean
 	@rm -f $(NAME)
 
 re:	fclean all

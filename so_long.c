@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:05:54 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/27 23:04:00 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:38:14 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,13 @@ static void	initialize_tiles(t_game *game)
 	game->coins[0] = mlx_xpm_file_to_image(game->mlx,
 			"./textures/xpm/ring.xpm", &game->tile, &game->tile);
 	game->sonic[0] = mlx_xpm_file_to_image(game->mlx,
-			"./textures/xpm/sonic_left.xpm", &game->tile, &game->tile);
+			"./textures/xpm/sonic.xpm", &game->tile, &game->tile);
+	game->sonic[1] = mlx_xpm_file_to_image(game->mlx,
+			"./textures/xpm/sonicwin.xpm", &game->tile, &game->tile);
+	game->exit[0] = mlx_xpm_file_to_image(game->mlx,
+			"./textures/xpm/sonicwin.xpm", &game->tile, &game->tile);
+	// game->exit[1] = mlx_xpm_file_to_image(game->mlx,
+	// 		"./textures/xpm/emerald.xpm", &game->tile, &game->tile);
 }
 
 static void	renderborders(t_game *game)
@@ -90,7 +96,7 @@ static void	renderelements(t_game *game)
 					game->sonic[0],	j * TILE, i * TILE);	
 			if (game->map->map[i][j] == EXIT)
 				mlx_put_image_to_window(game->mlx, game->window,
-					game->coins[0],	j * TILE, i * TILE);	
+					game->exit[0],	j * TILE, i * TILE);	
 		}
 		j = -1;
 	}
@@ -123,8 +129,13 @@ static void	rendermap(t_game *game)
 
 static void	move(int newx, int newy, t_game *game)
 {
+	ft_printf("Number of moves: %d\n", ++game->moves);
 	if (game->map->map[newy][newx] == WALL)
 		return ;
+	if (game->map->map[newy][newx] == COIN)
+		game->map->coins--;
+	if (game->map->coins == 0)
+		game->exitflag = 1;
 	mlx_put_image_to_window(game->mlx, game->window, game->tiles[2],
 			game->map->x * TILE, game->map->y * TILE);
 	game->map->map[game->map->y][game->map->x] = FLOOR;
@@ -137,9 +148,30 @@ static void	move(int newx, int newy, t_game *game)
 					game->sonic[0],	game->map->x * TILE, game->map->y * TILE);
 	usleep(100000);
 }
+static void	destroysprites(t_game *game)
+{
+	mlx_destroy_image(game->mlx, game->coins[0]);
+	mlx_destroy_image(game->mlx, game->exit[0]);
+	mlx_destroy_image(game->mlx, game->sonic[0]);
+	mlx_destroy_image(game->mlx, game->tiles[0]);
+	mlx_destroy_image(game->mlx, game->tiles[1]);
+	mlx_destroy_image(game->mlx, game->tiles[2]);
+}
+
+static int	gameover(t_game *game)
+{
+	freeing(game->map->map, NULL, game->map);
+	destroysprites(game);
+	mlx_destroy_window(game->mlx, game->window);
+	exit(S);
+}
 
 static int	handle_keys(int keycode, t_game *game)
 {
+	if (game->map->coins == 0)
+		game->exitflag = 1;
+	if (keycode == ESC)
+		gameover(game);
 	if (keycode == UP)
 		move(game->map->x, game->map->y - 1, game);
 	if (keycode == DOWN)
@@ -151,10 +183,13 @@ static int	handle_keys(int keycode, t_game *game)
 	return (0);
 }
 
+
 int	main(int ac, char **av)
 {
 	t_game	game;
 
+	game.moves = 0;
+	game.exitflag = 1;
 	game.map = malloc (sizeof(t_parsemap));
 	if (ac != 2)
 		(write(2, "Usage: ./so_long [map].ber\n", 28), exit (F));
@@ -164,6 +199,7 @@ int	main(int ac, char **av)
 			game.map->rows * TILE, "so_long");
 	rendermap(&game);
 	mlx_hook(game.window, 2, 0, handle_keys, &game);
+	mlx_hook(game.window, 17, 0, gameover, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:51:34 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/27 21:57:17 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:23:17 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
+# include "ft_printf/ft_printf.h"
 # include <fcntl.h>
 # include <stdio.h>
 
@@ -50,9 +51,9 @@ typedef struct s_parsemap
 	char	**copy;
 	int		coins;
 	int		tempc;
-	int		player;
-	int		exit;
 	int		tempe;
+	int		exit;
+	int		player;
 	int		x;
 	int		exitx;
 	int		y;
@@ -65,8 +66,11 @@ typedef struct s_game
 	void		*window;
 	void		*tiles[3];
 	void		*coins[1];
-	void		*sonic[1];
+	void		*sonic[2];
+	int			exitflag;
+	void		*exit[2];
 	int			tile;
+	int			moves;
 	t_parsemap	*map;
 }	t_game;
 
@@ -76,6 +80,7 @@ typedef enum keys
 	DOWN = 125, 
 	RIGHT = 124,
 	LEFT = 123,
+	ESC = 53
 }	t_keys;
 
 /***************************************************************/
