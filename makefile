@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+         #
+#    By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 15:04:55 by tabadawi          #+#    #+#              #
-#    Updated: 2024/03/29 13:47:33 by tabadawi         ###   ########.fr        #
+#    Updated: 2024/03/29 21:35:29 by tarekkkk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ CC		=	cc
 CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g3
 
 SRCS 	=	so_long.c \
-			parsing_map.c parsing_utils.c \
-			valid_path.c
+			parsing_map.c parsing_utils.c valid_path.c \
+			rendering.c game.c game_utils.c game_ending.c 
 
 OBJS	=	$(SRCS:.c=.o)
 

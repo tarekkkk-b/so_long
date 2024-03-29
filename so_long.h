@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:51:34 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/29 16:10:00 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/29 21:33:04 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_game
 typedef enum keys
 {
 	UP = 126,
-	DOWN = 125, 
+	DOWN = 125,
 	RIGHT = 124,
 	LEFT = 123,
 	ESC = 53
@@ -102,5 +102,17 @@ int		check_occurance(char *row, char c);
 void	validate_char(t_parsemap **prsng, char c);
 void	initializer(t_parsemap **prsng);
 void	validate_path(char **copy, int x, int y, t_parsemap **prsng);
+void	destroysprites(t_game *game);
+int		gameover(t_game *game);
+void	game_won(t_game *game);
+int		checkexit(t_game *game);
+int		handle_keys(int keycode, t_game *game);
+void	initialize_tiles(t_game *game);
+void	rendermap(t_game *game);
+void	renderborders(t_game *game);
+void	renderelements(t_game *game);
+void	exittilehandling(t_game *game, int newx, int newy);
+void	change_frames(int newx, int newy, t_game *game);
+void	move(int newx, int newy, t_game *game);
 
 #endif

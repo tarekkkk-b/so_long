@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:42:22 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/27 13:57:48 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/29 20:07:46 by tarekkkk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	validate_char(t_parsemap **prsng, char c)
 	if (c != WALL && c != FLOOR && c != COIN && c != PLAYER && c != EXIT)
 	{
 		write (2, "Invalid token found.\n", 21);
-		(freeing((*prsng)->map, (*prsng)->copy,(*prsng)), exit(F));
+		(freeing((*prsng)->map, (*prsng)->copy, (*prsng)), exit(F));
 	}
 }
 
