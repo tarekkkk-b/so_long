@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:05:54 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/28 16:38:14 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:25:50 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,27 +127,6 @@ static void	rendermap(t_game *game)
 	renderelements(game);
 }
 
-static void	move(int newx, int newy, t_game *game)
-{
-	ft_printf("Number of moves: %d\n", ++game->moves);
-	if (game->map->map[newy][newx] == WALL)
-		return ;
-	if (game->map->map[newy][newx] == COIN)
-		game->map->coins--;
-	if (game->map->coins == 0)
-		game->exitflag = 1;
-	mlx_put_image_to_window(game->mlx, game->window, game->tiles[2],
-			game->map->x * TILE, game->map->y * TILE);
-	game->map->map[game->map->y][game->map->x] = FLOOR;
-	game->map->x = newx;
-	game->map->y = newy;
-	game->map->map[newy][newx] = PLAYER;
-	mlx_put_image_to_window(game->mlx, game->window,
-					game->tiles[2],	game->map->x * TILE, game->map->y * TILE);
-	mlx_put_image_to_window(game->mlx, game->window,
-					game->sonic[0],	game->map->x * TILE, game->map->y * TILE);
-	usleep(100000);
-}
 static void	destroysprites(t_game *game)
 {
 	mlx_destroy_image(game->mlx, game->coins[0]);
@@ -166,10 +145,86 @@ static int	gameover(t_game *game)
 	exit(S);
 }
 
-static int	handle_keys(int keycode, t_game *game)
+static void	game_won(t_game *game)
 {
+	ft_printf("YOU WON\n");
+	mlx_put_image_to_window(game->mlx, game->window,
+					game->tiles[2],	game->map->x * TILE, game->map->y * TILE);
+	mlx_put_image_to_window(game->mlx, game->window,
+					game->sonic[0],	game->map->x * TILE, game->map->y * TILE);
+	game->controls = 0;
+	game->exitcollected = 1;
+}
+
+static void	exittilehandling(t_game *game, int newx, int newy)
+{
+	if (game->exitflag == 1)
+	{	
+		mlx_put_image_to_window(game->mlx, game->window, game->tiles[2],
+				game->map->x * TILE, game->map->y * TILE);
+		game->map->map[game->map->y][game->map->x] = FLOOR;
+		game->map->x = newx;
+		game->map->y = newy;
+		game->map->map[newy][newx] = PLAYER;
+		mlx_put_image_to_window(game->mlx, game->window,
+						game->tiles[2],	game->map->x * TILE, game->map->y * TILE);
+		mlx_put_image_to_window(game->mlx, game->window,
+						game->sonic[0],	game->map->x * TILE, game->map->y * TILE);
+		game_won(game);
+	}
+	else
+	{
+		mlx_put_image_to_window(game->mlx, game->window, game->tiles[2],
+				game->map->x * TILE, game->map->y * TILE);
+		game->map->map[game->map->y][game->map->x] = FLOOR;
+		game->map->x = newx;
+		game->map->y = newy;
+		mlx_put_image_to_window(game->mlx, game->window,
+						game->tiles[2],	game->map->x * TILE, game->map->y * TILE);
+		mlx_put_image_to_window(game->mlx, game->window,
+						game->exit[0],	game->map->x * TILE, game->map->y * TILE);
+		mlx_put_image_to_window(game->mlx, game->window,
+						game->sonic[0],	game->map->x * TILE, game->map->y * TILE);
+		game->wasexit = 1;
+	}
+}
+
+static void	move(int newx, int newy, t_game *game)
+{
+	ft_printf("Number of moves: %d\n", ++game->moves);
+	if (game->map->map[newy][newx] == WALL)
+		return ;
+	if (game->map->map[newy][newx] == COIN)
+		game->map->coins--;
 	if (game->map->coins == 0)
 		game->exitflag = 1;
+	if (game->map->map[newy][newx] == EXIT)
+		return (exittilehandling(game, newx, newy));
+	mlx_put_image_to_window(game->mlx, game->window, game->tiles[2],
+			game->map->x * TILE, game->map->y * TILE);
+	if (game->wasexit == 1)
+	{
+		mlx_put_image_to_window(game->mlx, game->window,
+						game->exit[0],	game->map->x * TILE, game->map->y * TILE);	
+		game->map->map[game->map->y][game->map->x] = EXIT;
+		game->wasexit = 0;
+	}
+	else
+		game->map->map[game->map->y][game->map->x] = FLOOR;
+	game->map->x = newx;
+	game->map->y = newy;
+	game->map->map[newy][newx] = PLAYER;
+	mlx_put_image_to_window(game->mlx, game->window,
+					game->tiles[2],	game->map->x * TILE, game->map->y * TILE);
+	mlx_put_image_to_window(game->mlx, game->window,
+					game->sonic[0],	game->map->x * TILE, game->map->y * TILE);
+	usleep(100000);
+}
+
+static int	handle_keys(int keycode, t_game *game)
+{
+	if (game->controls == 0)
+		return (0);
 	if (keycode == ESC)
 		gameover(game);
 	if (keycode == UP)
@@ -189,7 +244,10 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	game.moves = 0;
-	game.exitflag = 1;
+	game.exitflag = 0;
+	game.controls = 1;
+	game.wasexit = 0;
+	game.exitcollected = 0;
 	game.map = malloc (sizeof(t_parsemap));
 	if (ac != 2)
 		(write(2, "Usage: ./so_long [map].ber\n", 28), exit (F));

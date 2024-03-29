@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:51:34 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/28 16:23:17 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:10:00 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ typedef struct s_game
 	void		*exit[2];
 	int			tile;
 	int			moves;
+	int			controls;
+	int			wasexit;
+	int			exitcollected;
 	t_parsemap	*map;
 }	t_game;
 
