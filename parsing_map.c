@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:07:27 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/27 21:01:40 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/30 11:33:38 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	validate_size(t_parsemap **prsng)
 		write(2, "Map is too small.\n", 18);
 		(freeing((*prsng)->map, (*prsng)->copy, (*prsng)), exit(F));
 	}
-	if ((*prsng)->cols > 24 || (*prsng)->rows > 42)
+	if ((*prsng)->cols > 23 || (*prsng)->rows > 11)
 	{
 		write(2, "Map is too big.\n", 16);
 		(freeing((*prsng)->map, (*prsng)->copy, (*prsng)), exit(F));

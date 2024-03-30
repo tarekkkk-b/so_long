@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game_ending.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/30 12:01:26 by tabadawi          #+#    #+#             */
+/*   Updated: 2024/03/30 12:01:27 by tabadawi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	destroysprites(t_game *game)
@@ -5,6 +17,7 @@ void	destroysprites(t_game *game)
 	mlx_destroy_image(game->mlx, game->coins[0]);
 	mlx_destroy_image(game->mlx, game->exit[0]);
 	mlx_destroy_image(game->mlx, game->sonic[0]);
+	mlx_destroy_image(game->mlx, game->sonic[1]);
 	mlx_destroy_image(game->mlx, game->tiles[0]);
 	mlx_destroy_image(game->mlx, game->tiles[1]);
 	mlx_destroy_image(game->mlx, game->tiles[2]);
@@ -24,7 +37,7 @@ void	game_won(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->window,
 		game->tiles[2], game->map->x * TILE, game->map->y * TILE);
 	mlx_put_image_to_window(game->mlx, game->window,
-		game->exit[0], game->map->x * TILE, game->map->y * TILE);
+		game->sonic[1], game->map->x * TILE, game->map->y * TILE);
 	game->controls = 0;
 	game->exitcollected = 1;
 }

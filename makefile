@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+         #
+#    By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 15:04:55 by tabadawi          #+#    #+#              #
-#    Updated: 2024/03/29 21:46:52 by tarekkkk         ###   ########.fr        #
+#    Updated: 2024/03/30 11:28:48 by tabadawi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	=	so_long
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS	=	-Wall -Werror -Wextra
 
 SRCS 	=	so_long.c \
 			parsing_map.c parsing_utils.c valid_path.c \

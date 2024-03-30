@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rendering.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/30 12:01:40 by tabadawi          #+#    #+#             */
+/*   Updated: 2024/03/30 12:01:41 by tabadawi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	initialize_tiles(t_game *game)
@@ -16,7 +28,7 @@ void	initialize_tiles(t_game *game)
 	game->sonic[1] = mlx_xpm_file_to_image(game->mlx,
 			"./textures/xpm/sonicwin.xpm", &game->tile, &game->tile);
 	game->exit[0] = mlx_xpm_file_to_image(game->mlx,
-			"./textures/xpm/sonicwin.xpm", &game->tile, &game->tile);
+			"./textures/xpm/emerald.xpm", &game->tile, &game->tile);
 }
 
 void	rendermap(t_game *game)
@@ -81,9 +93,6 @@ void	renderelements(t_game *game)
 			if (game->map->map[i][j] == PLAYER)
 				mlx_put_image_to_window(game->mlx, game->window,
 					game->sonic[0], j * TILE, i * TILE);
-			if (game->map->map[i][j] == EXIT)
-				mlx_put_image_to_window(game->mlx, game->window,
-					game->tiles[2], j * TILE, i * TILE);
 		}
 		j = -1;
 	}
