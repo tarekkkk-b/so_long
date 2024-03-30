@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:01:32 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/30 12:01:33 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:08:55 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	handle_keys(int keycode, t_game *game)
 		gameover(game);
 	if (game->controls == 0)
 		return (0);
-	if (keycode == UP)
+	if (keycode == UP || keycode == W)
 		move(game->map->x, game->map->y - 1, game);
-	if (keycode == DOWN)
+	if (keycode == DOWN || keycode == S)
 		move(game->map->x, game->map->y + 1, game);
-	if (keycode == LEFT)
+	if (keycode == LEFT || keycode == A)
 		move(game->map->x - 1, game->map->y, game);
-	if (keycode == RIGHT)
+	if (keycode == RIGHT || keycode == D)
 		move(game->map->x + 1, game->map->y, game);
 	return (0);
 }

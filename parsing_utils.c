@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:42:22 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/29 20:07:46 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:09:55 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void	validate_file(char *path, t_parsemap **prsng)
 	int	fd;
 
 	if (!path)
-		(write(2, "Usage: ./so_long [map].ber\n", 27), free(*prsng), exit(F));
+		(write(2, "Usage: ./so_long [map].ber\n", 27), free(*prsng), exit(EF));
 	if (ft_strncmp(&path[ft_strlen(path) - 4], ".ber", 4) != 0)
-		(write(2, "Usage: ./so_long [map].ber\n", 27), free(*prsng), exit(F));
+		(write(2, "Usage: ./so_long [map].ber\n", 27), free(*prsng), exit(EF));
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		(write (2, "Couldn't find file.\n", 20), free(*prsng), exit(F));
+		(write (2, "Couldn't find file.\n", 20), free(*prsng), exit(EF));
 	close (fd);
 }
 
@@ -81,7 +81,7 @@ void	validate_char(t_parsemap **prsng, char c)
 	if (c != WALL && c != FLOOR && c != COIN && c != PLAYER && c != EXIT)
 	{
 		write (2, "Invalid token found.\n", 21);
-		(freeing((*prsng)->map, (*prsng)->copy, (*prsng)), exit(F));
+		(freeing((*prsng)->map, (*prsng)->copy, (*prsng)), exit(EF));
 	}
 }
 

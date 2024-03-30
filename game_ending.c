@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:01:26 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/30 12:01:27 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:06:57 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	gameover(t_game *game)
 	freeing(game->map->map, NULL, game->map);
 	destroysprites(game);
 	mlx_destroy_window(game->mlx, game->window);
-	exit(S);
+	exit(ES);
 }
 
 void	game_won(t_game *game)

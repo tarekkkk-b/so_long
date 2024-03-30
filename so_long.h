@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:51:34 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/30 11:15:21 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:06:20 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define COIN				'C'
 # define PLAYER				'P'
 # define EXIT				'E'
-# define F					EXIT_FAILURE
-# define S					EXIT_SUCCESS
+# define EF					EXIT_FAILURE
+# define ES					EXIT_SUCCESS
 # define TILE				120
 
 /***************************************************************/
@@ -83,6 +83,10 @@ typedef enum keys
 	DOWN = 125,
 	RIGHT = 124,
 	LEFT = 123,
+	W = 13,
+	A= 0,
+	S = 1,
+	D = 2,
 	ESC = 53
 }	t_keys;
 

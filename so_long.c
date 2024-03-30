@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarekkkk <tarekkkk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:05:54 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/29 21:12:14 by tarekkkk         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:09:35 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	parse_map(char *path, t_game *map)
 	if (map->map->player != 1 || map->map->exit != 1 || map->map->coins < 1)
 	{
 		write(2, "Wrong tokens count.\n", 20);
-		(freeing(map->map->map, map->map->copy, map->map), exit(F));
+		(freeing(map->map->map, map->map->copy, map->map), exit(EF));
 	}
 	validate_path(map->map->copy, map->map->x, map->map->y, &map->map);
 	if (map->map->tempe != 0 || map->map->tempe != 0)
 	{
 		write(2, "No valid path found.\n", 21);
-		(freeing(map->map->map, map->map->copy, map->map), exit(F));
+		(freeing(map->map->map, map->map->copy, map->map), exit(EF));
 	}
 	freeing(NULL, map->map->copy, NULL);
 }
@@ -48,7 +48,7 @@ int	main(int ac, char **av)
 	game.exitcollected = 0;
 	game.map = malloc (sizeof(t_parsemap));
 	if (ac != 2)
-		(write(2, "Usage: ./so_long [map].ber\n", 28), exit (F));
+		(write(2, "Usage: ./so_long [map].ber\n", 28), exit(EF));
 	parse_map(av[1], &game);
 	game.mlx = mlx_init();
 	game.window = mlx_new_window(game.mlx, game.map->cols * TILE,
