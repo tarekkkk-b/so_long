@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 15:04:55 by tabadawi          #+#    #+#              #
-#    Updated: 2024/03/30 14:08:04 by tabadawi         ###   ########.fr        #
+#    Updated: 2024/04/03 13:41:03 by tabadawi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ CFLAGS	=	-Wall -Werror -Wextra
 
 SRCS 	=	so_long.c \
 			parsing_map.c parsing_utils.c valid_path.c \
-			rendering.c game.c game_ending.c 
+			rendering.c game.c game_ending.c checkimages.c
 
 OBJS	=	$(SRCS:.c=.o)
 

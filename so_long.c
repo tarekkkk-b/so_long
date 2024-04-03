@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:05:54 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/30 14:09:35 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:41:34 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	main(int ac, char **av)
 	game.controls = 1;
 	game.wasexit = 0;
 	game.exitcollected = 0;
+	checkimages(setlist());
 	game.map = malloc (sizeof(t_parsemap));
 	if (ac != 2)
 		(write(2, "Usage: ./so_long [map].ber\n", 28), exit(EF));

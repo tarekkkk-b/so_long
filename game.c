@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:01:32 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/30 14:08:55 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:37:33 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	change_frames(int newx, int newy, t_game *game)
 
 void	move(int newx, int newy, t_game *game)
 {
-	ft_printf("Number of moves: %d\n", ++game->moves);
 	if (game->map->map[newy][newx] == WALL)
 		return ;
+	ft_printf("Number of moves: %d\n", ++game->moves);
 	if (game->map->map[newy][newx] == COIN)
 		game->map->coins--;
 	if (game->map->coins == 0)
@@ -90,5 +90,4 @@ void	move(int newx, int newy, t_game *game)
 	else
 		game->map->map[game->map->y][game->map->x] = FLOOR;
 	change_frames(newx, newy, game);
-	usleep(100000);
 }

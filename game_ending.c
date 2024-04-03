@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:01:26 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/30 14:06:57 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:37:16 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,18 @@ void	game_won(t_game *game)
 
 int	checkexit(t_game *game)
 {
+	int	i;
+
 	if (game->exitcollected == 1)
 	{
-		usleep(800000);
+		i = 0;
+		while (i < 30000000)
+			i++;
+		gameover(game);
+	}
+	if (game->moves == 1000)
+	{
+		ft_printf("You really suck at this game huh?\n");
 		gameover(game);
 	}
 	return (0);

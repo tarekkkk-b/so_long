@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:51:34 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/30 14:06:20 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:40:51 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,7 @@ void	renderelements(t_game *game);
 void	exittilehandling(t_game *game, int newx, int newy);
 void	change_frames(int newx, int newy, t_game *game);
 void	move(int newx, int newy, t_game *game);
+void	checkimages(char **set);
+char	**setlist(void);
 
 #endif
