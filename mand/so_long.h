@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:51:34 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/04/03 13:40:51 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/04/05 11:56:02 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 /*							libraries						  */
 /*************************************************************/
 
-# include "./mlx/mlx.h"
-# include "./libft/libft.h"
-# include "ft_printf/ft_printf.h"
+# include "../mlx/mlx.h"
+# include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
 # include <fcntl.h>
 # include <stdio.h>
 

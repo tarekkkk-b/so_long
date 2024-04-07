@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 13:38:16 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/04/03 13:40:26 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/04/05 13:08:07 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 char	**setlist(void)
 {
 	static char	*list[7] = {
-		"./textures/xpm/border.xpm", "./textures/xpm/wall.xpm",
-		"./textures/xpm/floor.xpm",	"./textures/xpm/emerald.xpm",
-		"./textures/xpm/ring.xpm", "./textures/xpm/sonic.xpm",
-		"./textures/xpm/sonicwin.xpm"
+		"./mand/textures/xpm/border.xpm", "./mand/textures/xpm/wall.xpm",
+		"./mand/textures/xpm/floor.xpm",	"./mand/textures/xpm/emerald.xpm",
+		"./mand/textures/xpm/ring.xpm", "./mand/textures/xpm/sonic.xpm",
+		"./mand/textures/xpm/sonicwin.xpm"
 	};
 
 	return (list);

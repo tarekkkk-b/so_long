@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:01:26 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/04/03 13:37:16 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:01:47 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void	game_won(t_game *game)
 
 int	checkexit(t_game *game)
 {
-	int	i;
+	long	i;
 
 	if (game->exitcollected == 1)
 	{
 		i = 0;
-		while (i < 30000000)
+		while (i < 300000000)
 			i++;
 		gameover(game);
 	}

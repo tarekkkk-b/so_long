@@ -6,11 +6,11 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:42:22 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/30 14:09:55 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/04/05 16:20:24 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 /// @brief frees a 2D array
 /// @param map takes a 2D array, usually will be the map
@@ -67,7 +67,7 @@ int	check_occurance(char *row, char c)
 	while (i < len)
 	{
 		if (row[i] != c)
-			return (0);
+			return (-1);
 		i++;
 	}
 	return (1);
@@ -78,7 +78,8 @@ int	check_occurance(char *row, char c)
 /// @param c the character
 void	validate_char(t_parsemap **prsng, char c)
 {
-	if (c != WALL && c != FLOOR && c != COIN && c != PLAYER && c != EXIT)
+	if (c != WALL && c != FLOOR && c != COIN && c != PLAYER && c != EXIT
+		&& c != SPIKES && c != ENEMY)
 	{
 		write (2, "Invalid token found.\n", 21);
 		(freeing((*prsng)->map, (*prsng)->copy, (*prsng)), exit(EF));
@@ -93,8 +94,13 @@ void	initializer(t_parsemap **prsng)
 	(*prsng)->tempe = -1;
 	(*prsng)->emptyline = -1;
 	(*prsng)->coins = 0;
+	(*prsng)->enemyx = 0;
+	(*prsng)->lastx = 0;
+	(*prsng)->lasty = 0;
+	(*prsng)->enemyy = 0;
 	(*prsng)->player = 0;
 	(*prsng)->exit = 0;
+	(*prsng)->enemies = 0;
 	(*prsng)->x = 0;
 	(*prsng)->y = 0;
 }

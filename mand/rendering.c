@@ -6,7 +6,7 @@
 /*   By: tabadawi <tabadawi@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:01:40 by tabadawi          #+#    #+#             */
-/*   Updated: 2024/03/30 12:01:41 by tabadawi         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:54:05 by tabadawi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ void	initialize_tiles(t_game *game)
 {
 	game->tile = TILE;
 	game->tiles[0] = mlx_xpm_file_to_image(game->mlx,
-			"./textures/xpm/border.xpm", &game->tile, &game->tile);
+			"./mand/textures/xpm/border.xpm", &game->tile, &game->tile);
 	game->tiles[1] = mlx_xpm_file_to_image(game->mlx,
-			"./textures/xpm/wall.xpm", &game->tile, &game->tile);
+			"./mand/textures/xpm/wall.xpm", &game->tile, &game->tile);
 	game->tiles[2] = mlx_xpm_file_to_image(game->mlx,
-			"./textures/xpm/floor.xpm", &game->tile, &game->tile);
+			"./mand/textures/xpm/floor.xpm", &game->tile, &game->tile);
 	game->coins[0] = mlx_xpm_file_to_image(game->mlx,
-			"./textures/xpm/ring.xpm", &game->tile, &game->tile);
+			"./mand/textures/xpm/ring.xpm", &game->tile, &game->tile);
 	game->sonic[0] = mlx_xpm_file_to_image(game->mlx,
-			"./textures/xpm/sonic.xpm", &game->tile, &game->tile);
+			"./mand/textures/xpm/sonic.xpm", &game->tile, &game->tile);
 	game->sonic[1] = mlx_xpm_file_to_image(game->mlx,
-			"./textures/xpm/sonicwin.xpm", &game->tile, &game->tile);
+			"./mand/textures/xpm/sonicwin.xpm", &game->tile, &game->tile);
 	game->exit[0] = mlx_xpm_file_to_image(game->mlx,
-			"./textures/xpm/emerald.xpm", &game->tile, &game->tile);
+			"./mand/textures/xpm/emerald.xpm", &game->tile, &game->tile);
 }
 
 void	rendermap(t_game *game)
