@@ -113,36 +113,17 @@ LIBFT	=	libft/libft.a
 
 PRINTF	=	ft_printf/libftprintf.a
 
-# ifeq (${OS}, Darwin)
-#   MLXDIR = mlx
-#   MLX = ${MLXDIR}/libmlx.a
-#   MLXFLAG = -L$(MLXDIR) -lmlx -framework OpenGL -framework Appkit -L/usr/lib -lm
-# else ifeq (${OS}, Linux)
-#   MLXDIR = minilibx_linux
-#   MLX = minilibx_linux/libmlx.a
-#   MLXFLAG = -L minilibx_linux -lmlx -L/usr/lib -lXext -lX11 -lm -lGL
-# endif
-
 UNAME := $(shell uname -s)
 
 ifeq ($(UNAME), Darwin)
   MLXDIR = mlx
   MLX = mlx/libmlx.a
   MLXFLAG = -Lmlx -lmlx -framework OpenGL -framework Appkit -L/usr/lib -lm
-  # MLXFLAG = -lmlx
 else ifeq ($(UNAME), Linux)
   MLXDIR = minilibx_linux
   MLX = minilibx_linux/libmlx_Linux.a
   MLXFLAG = -L minilibx_linux -lmlx -L/usr/lib -lXext -lX11 -lm -lGL
 endif
-
-# $(MLX):
-# 	$(MAKE) -C $(MLXDIR)
-
-
-# MLXDIR = minilibx_linux
-# MLX = minilibx_linux/libmlx.a
-# MLXFLAG = -L minilibx_linux -lmlx -L/usr/lib -lXext -lX11 -lm -lGL
 
 all		:	$(NAME)
 
