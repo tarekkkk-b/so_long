@@ -111,11 +111,38 @@ BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 LIBFT	=	libft/libft.a
 
-PRINTF	=	ft_printf/libftprintf.a	
+PRINTF	=	ft_printf/libftprintf.a
 
-MLX		=	mlx/libmlx.a
+# ifeq (${OS}, Darwin)
+#   MLXDIR = mlx
+#   MLX = ${MLXDIR}/libmlx.a
+#   MLXFLAG = -L$(MLXDIR) -lmlx -framework OpenGL -framework Appkit -L/usr/lib -lm
+# else ifeq (${OS}, Linux)
+#   MLXDIR = minilibx_linux
+#   MLX = minilibx_linux/libmlx.a
+#   MLXFLAG = -L minilibx_linux -lmlx -L/usr/lib -lXext -lX11 -lm -lGL
+# endif
 
-MLXFLAG	=	-L mlx -lmlx -framework OpenGL -framework AppKit
+UNAME := $(shell uname -s)
+
+ifeq ($(UNAME), Darwin)
+  MLXDIR = mlx
+  MLX = mlx/libmlx.a
+  MLXFLAG = -Lmlx -lmlx -framework OpenGL -framework Appkit -L/usr/lib -lm
+  # MLXFLAG = -lmlx
+else ifeq ($(UNAME), Linux)
+  MLXDIR = minilibx_linux
+  MLX = minilibx_linux/libmlx_Linux.a
+  MLXFLAG = -L minilibx_linux -lmlx -L/usr/lib -lXext -lX11 -lm -lGL
+endif
+
+# $(MLX):
+# 	$(MAKE) -C $(MLXDIR)
+
+
+# MLXDIR = minilibx_linux
+# MLX = minilibx_linux/libmlx.a
+# MLXFLAG = -L minilibx_linux -lmlx -L/usr/lib -lXext -lX11 -lm -lGL
 
 all		:	$(NAME)
 
@@ -126,7 +153,8 @@ $(PRINTF):
 	@$(MAKE)	-C ft_printf
 
 $(MLX):
-	@$(MAKE)  -C mlx
+	@$(MAKE)  -C $(MLXDIR)
+
 	
 $(NAME)	: $(OBJS) $(LIBFT)  $(MLX)  $(PRINTF)
 	@$(CC) $(CFLAGS) $(OBJS) $(MLXFLAG) -o $@ $(LIBFT) $(MLX) $(PRINTF)
@@ -144,19 +172,6 @@ $(BONUS) 	: $(BONUS_OBJS) $(LIBFT) $(MLX) $(PRINTF)
 	@rm -f $(OBJS)
 	@ echo "${YELLOW}$$SUPERSONIC"
 
-	
-# %.o: %.c
-# 	@$(CC) $(CFLAGS) -c $< -o $@
-
-# $(LIBFT):
-# 	@$(MAKE)	-C libft
-
-# $(PRINTF):
-# 	@$(MAKE)	-C ft_printf
-
-# $(MLX):
-# 	@$(MAKE)	-C mlx
-
 clean :
 	@$(MAKE) -C libft clean
 	@$(MAKE) -C ft_printf clean
@@ -166,7 +181,7 @@ clean :
 fclean: clean
 	@$(MAKE) -C libft fclean
 	@$(MAKE) -C ft_printf fclean
-	@$(MAKE) -C mlx clean
+	@$(MAKE) -C $(MLXDIR) clean
 	@ echo "${RED}$$SONIC"
 	@rm -f $(NAME)
 	@rm -f $(BONUS)

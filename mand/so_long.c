@@ -55,7 +55,7 @@ int	main(int ac, char **av)
 	game.window = mlx_new_window(game.mlx, game.map->cols * TILE,
 			game.map->rows * TILE, "so_long");
 	rendermap(&game);
-	mlx_hook(game.window, 2, 0, handle_keys, &game);
+	mlx_hook(game.window, 2, 1L << 0, handle_keys, &game);
 	mlx_hook(game.window, 17, 0, gameover, &game);
 	mlx_loop_hook(game.mlx, checkexit, &game);
 	mlx_loop(game.mlx);

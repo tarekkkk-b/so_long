@@ -17,7 +17,11 @@
 /*							libraries						  */
 /*************************************************************/
 
-# include "../mlx/mlx.h"
+#ifdef __APPLE__
+	# include "../mlx/mlx.h"
+#else
+	#include "../minilibx_linux/mlx.h"
+#endif
 # include "../libft/libft.h"
 # include "../ft_printf/ft_printf.h"
 # include <fcntl.h>
@@ -77,18 +81,37 @@ typedef struct s_game
 	t_parsemap	*map;
 }	t_game;
 
-typedef enum keys
+# ifdef __APPLE__
+
+typedef enum s_keys
 {
 	UP = 126,
 	DOWN = 125,
 	RIGHT = 124,
 	LEFT = 123,
 	W = 13,
-	A= 0,
+	A = 0,
 	S = 1,
 	D = 2,
 	ESC = 53
 }	t_keys;
+
+# else
+
+typedef enum s_keys
+{
+	UP = 65362,
+	DOWN = 65364,
+	RIGHT = 65363,
+	LEFT = 65361,
+	W = 119,
+	A = 97,
+	S = 115,
+	D = 100,
+	ESC = 65307
+}	t_keys;
+
+# endif
 
 /***************************************************************/
 /*							functions						  */
